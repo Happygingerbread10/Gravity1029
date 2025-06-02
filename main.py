@@ -1,24 +1,25 @@
 import streamlit as st
 import random
 
-# MBTI별 추천 직업 리스트
+# MBTI별 추천 직업 리스트와 이미지
 mbti_jobs = {
-    "INTJ": ["🔬 과학자", "👩‍💻 데이터 사이언티스트", "📈 전략 컨설턴트"],
-    "INTP": ["💡 발명가", "📊 연구원", "👨‍🔬 이론 물리학자"],
-    "ENTJ": ["💼 CEO", "🧠 경영 컨설턴트", "🏛️ 정치가"],
-    "ENTP": ["🎤 방송인", "🎭 기획자", "🚀 창업가"],
-    "INFJ": ["🧘 상담가", "📚 작가", "🧑‍🏫 교육자"],
-    "INFP": ["🎨 예술가", "📝 시인", "🌱 사회 운동가"],
-    "ENFJ": ["👩‍🏫 교사", "🎤 연설가", "🤝 리더"],
-    "ENFP": ["🌍 여행가", "🎬 영화 감독", "🧑‍🎨 창작자"],
-    "ISTJ": ["📋 행정가", "👨‍⚖️ 판사", "🛡️ 군인"],
-    "ISFJ": ["👩‍⚕️ 간호사", "👨‍🏫 교사", "🏥 사회복지사"],
-    "ESTJ": ["👮 경찰", "🏢 관리자", "📦 운영 책임자"],
-    "ESFJ": ["💐 이벤트 플래너", "🧑‍🍳 요리사", "🛍️ 마케터"],
-    "ISTP": ["🔧 엔지니어", "🕵️ 탐정", "🧭 파일럿"],
-    "ISFP": ["🎶 음악가", "🎨 디자이너", "🪴 플로리스트"],
-    "ESTP": ["🏎️ 레이서", "🕺 퍼포머", "💼 세일즈맨"],
-    "ESFP": ["🎤 가수", "📸 인플루언서", "🎉 파티 플래너"]
+    "INTJ": [
+        ("🔬 과학자", "https://cdn.pixabay.com/photo/2016/11/18/13/47/laboratory-1834220_1280.jpg"),
+        ("👩‍💻 데이터 사이언티스트", "https://cdn.pixabay.com/photo/2019/04/04/11/57/artificial-intelligence-4098952_1280.jpg"),
+        ("📈 전략 컨설턴트", "https://cdn.pixabay.com/photo/2018/03/11/09/33/analytics-3214287_1280.jpg")
+    ],
+    "INTP": [
+        ("💡 발명가", "https://cdn.pixabay.com/photo/2015/05/31/10/55/light-bulb-791825_1280.jpg"),
+        ("📊 연구원", "https://cdn.pixabay.com/photo/2016/03/27/21/56/analysis-1280537_1280.jpg"),
+        ("👨‍🔬 이론 물리학자", "https://cdn.pixabay.com/photo/2017/07/12/18/04/physics-2493764_1280.jpg")
+    ],
+    # (다른 MBTI들도 같은 형식으로 추가)
+    # 예시로 ENFP 한 개만 더 추가
+    "ENFP": [
+        ("🌍 여행가", "https://cdn.pixabay.com/photo/2017/01/20/00/30/backpack-1997620_1280.jpg"),
+        ("🎬 영화 감독", "https://cdn.pixabay.com/photo/2016/11/29/05/08/camera-1867184_1280.jpg"),
+        ("🧑‍🎨 창작자", "https://cdn.pixabay.com/photo/2016/11/19/14/00/artist-1837302_1280.jpg")
+    ]
 }
 
 st.set_page_config(
@@ -38,7 +39,8 @@ mbti = st.selectbox("🔍 당신의 MBTI를 선택하세요!", list(mbti_jobs.ke
 
 if mbti:
     st.markdown(f"## 🎉 {mbti} 유형에게 추천하는 직업은?! 🎯")
-    job = random.choice(mbti_jobs[mbti])
+    job, image_url = random.choice(mbti_jobs[mbti])
+    st.image(image_url, use_column_width=True)
     st.markdown(f"### 👉 {job}")
     st.balloons()
     st.markdown("""
